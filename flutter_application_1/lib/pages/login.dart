@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/Home.dart';
+import 'package:flutter_application_1/pages/sign_up.dart';
+import 'package:flutter_application_1/pages/phone.dart';
 
 void main() => runApp(const LoginPage());
 
@@ -12,7 +14,6 @@ class LoginPage extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: "Login Page",
         home: Scaffold(
-          appBar: AppBar(title: Text("Login Page")),
           body: MyStatefulWidget(),
         ));
   }
@@ -59,7 +60,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             child: Text(
               "Sign In",
               style: TextStyle(
-                fontWeight: FontWeight.w200,
+                fontWeight: FontWeight.w600,
                 fontSize: 20,
               ),
             ),
@@ -84,12 +85,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               ),
             ),
           ),
-          TextButton(onPressed: () {}, child: Text("Forgot Password")),
+          TextButton(onPressed: () {}, child: Text("Forgot Password",style: TextStyle(fontSize: 15),)),
           Container(
             height: 50,
             padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
             child: ElevatedButton(
-                child: Text("Login"),
+                child: Text("Login",
+                  style: TextStyle(fontSize: 20),),
                 onPressed: () {
                   //print(nameController);
                   //print(passwordController);
@@ -103,16 +105,65 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text("Don't have an account ?"),
-              ElevatedButton(
+        TextButton(onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SignUpPage()),
+          );
+        },
+            child: Text("Sign Up",
+              style: TextStyle(fontSize: 20)),)
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+          Padding(
+          padding: EdgeInsets.all(16.0),
+      child: SizedBox(
+        height:60, //height of button
+        width:200,
+        child:ElevatedButton(
+            child: Text(
+              "Google",
+              style: TextStyle(fontSize: 20),
+            ),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blue,
+
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Home()),
+              );
+            }),
+      ),
+    ),
+              
+              SizedBox(
+                height:60, //height of button
+                width:200,
+                child:ElevatedButton(
                   child: Text(
-                    "Sign Up",
+                    "Phone No",
                     style: TextStyle(fontSize: 20),
                   ),
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Phone()),
+                    );
+                    //Navigator.pop(context);
                   }),
+              ),
             ],
-          ),
+          )
         ],
       ),
     );

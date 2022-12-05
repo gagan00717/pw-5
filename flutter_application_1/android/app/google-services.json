@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "446389938654",
+    "project_id": "infit-7aa88",
+    "storage_bucket": "infit-7aa88.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446389938654:android:7752ddb80875bb7d26d54f",
+        "android_client_info": {
+          "package_name": "com.example.infit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "446389938654-gjs3vr1ldbem2456onbf89h9fle4onkj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjIE7UWDm8v2v_65Si0SgJopQDr9xurWM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "446389938654-gjs3vr1ldbem2456onbf89h9fle4onkj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "446389938654-v32b2a50ofl9u69g3obbkas4gjja8pqe.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterApplication1"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

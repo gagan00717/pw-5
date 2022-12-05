@@ -1,17 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/login.dart';
+import 'package:provider/provider.dart';
+
+import '../services/firebase_auth_methods.dart';
 
 void main() => runApp(const SignUpPage());
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
+  @override
+  _EmailPasswordSignupState createState() => _EmailPasswordSignupState();
+}
+
+class _EmailPasswordSignupState extends State<SignUpPage> {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  void signUpUser() async {
+    context.read<FirebaseAuthMethods>().signUpWithEmail(
+      email: nameController.text,
+      password: passwordController.text,
+      context: context,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         title: "Sign Up Page",
         home: Scaffold(
-          appBar: AppBar(title: Text("Sign Up Page")),
           body: MyStatefulWidget(),
         ));
   }
@@ -48,7 +65,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       fontSize: 30,
                     ),
                   ),
-                  Image.asset('assets/DSC04815.jpg'),
+                  //Image.asset('./assets/DSC04815.jpg'),
                 ],
                 mainAxisAlignment: MainAxisAlignment.center,
               ),
@@ -59,7 +76,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               child: Text(
                 "Sign Up",
                 style: TextStyle(
-                  fontWeight: FontWeight.w200,
+                  fontWeight: FontWeight.w600,
                   fontSize: 20,
                 ),
               ),
@@ -97,31 +114,36 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 height: 50,
                 padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: ElevatedButton(
-                    child: Text("Login"),
+                    child: Text("Sign Up",style: TextStyle(fontSize: 20),),
                     onPressed: () {
-                      print(nameController);
-                      print(passwordController);
-                      print(confirmController);
+                        signUpUser();
                     })),
             Row(
               children: <Widget>[
                 Text("Already have an account ?"),
-                ElevatedButton(
-                  child: Text(
-                    "Login",
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginPage()),
-                    );
-                  },
-                ),
+                TextButton(onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                  );
+                },
+                  child: Text("Sign In",
+                      style: TextStyle(fontSize: 20)),)
               ],
               mainAxisAlignment: MainAxisAlignment.center,
             ),
           ],
         ));
+  }
+
+
+  void signUpUser() async {
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+    context.read<FirebaseAuthMethods>().signUpWithEmail(
+      email: emailController.text,
+      password: passwordController.text,
+      context: context,
+    );
   }
 }
